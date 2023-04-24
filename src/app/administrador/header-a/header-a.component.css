@@ -1,0 +1,42 @@
+.header {
+    
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+   
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    z-index: 999; /* Asegura que el header aparezca en la parte superior */
+
+    
+  }
+  
+  .header_logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    
+  }
+  
+  .header_logo img {
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  .header_social-icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  .header_social-icons a {
+    display: inline-block;
+    margin-left: 10px;
+  }
+  
+  .header_social-icons a img {
+    height: 30px;
+  }
+  
