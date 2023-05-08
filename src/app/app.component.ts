@@ -8,15 +8,15 @@ import Swal from 'sweetalert2';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Escuela de Futbossssl';
+  title = 'Escuela de Futbol';
 
   ngOnInit(): void {
-    Swal.fire({
-      icon: 'success',
-      title: 'Bienvenido',
-      text: '¡Gracias por visitar nuestra página!',
-      confirmButtonText: 'Aceptar'
-    });
+    // Swal.fire({
+    //   icon: 'success',
+    //   title: 'Bienvenido',
+    //   text: '¡Gracias por visitar nuestra página!',
+    //   confirmButtonText: 'Aceptar'
+    // });
   }
 
   mostrarSweetAlert(): void {
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
       confirmButtonText: 'Aceptar'
     });
   }
-
+  
   mostrarSweetAlertError(): void {
     Swal.fire({
       icon: 'error',

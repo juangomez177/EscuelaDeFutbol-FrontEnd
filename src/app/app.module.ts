@@ -8,17 +8,10 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-/*
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { HeroSearchComponent } from './hero-search/hero-search.component';
-import { MessagesComponent } from './messages/messages.component';
-*/
+
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { AdministradorComponent } from './administrador/administrador.component';
 import { HeaderAComponent } from './administrador/header-a/header-a.component';
 import { FooterAComponent } from './administrador/footer-a/footer-a.component';
 import { MenuAComponent } from './administrador/menu-a/menu-a.component';
@@ -27,7 +20,6 @@ import { JugadorAComponent } from './administrador/jugador-a/jugador-a.component
 import { GaleriaAComponent } from './administrador/galeria-a/galeria-a.component';
 import { LoginAComponent } from './administrador/login-a/login-a.component';
 
-import { UsuarioComponent } from './usuario/usuario.component';
 import { HeaderUComponent } from './usuario/header-u/header-u.component';
 import { FooterUComponent } from './usuario/footer-u/footer-u.component';
 import { MenuUComponent } from './usuario/menu-u/menu-u.component';
@@ -35,6 +27,10 @@ import { InicioUComponent } from './usuario/inicio-u/inicio-u.component';
 import { EquipoUComponent } from './usuario/equipo-u/equipo-u.component';
 import { JugadorUComponent } from './usuario/jugador-u/jugador-u.component';
 import { GaleriaUComponent } from './usuario/galeria-u/galeria-u.component';
+import { AdministradorComponent } from './administrador/administrador.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+
+
 
 @NgModule({
   imports: [
@@ -53,33 +49,23 @@ import { GaleriaUComponent } from './usuario/galeria-u/galeria-u.component';
   ],
   declarations: [
     AppComponent,
-	
-	/*
-    DashboardComponent,
-    HeroesComponent,
-    HeroDetailComponent,
-    MessagesComponent,
-    HeroSearchComponent,
-   */
    
-	AdministradorComponent,
     MenuAComponent,
     MenuUComponent,
-	HeaderAComponent,
-    FooterAComponent,
-    EquipoAComponent,
-    JugadorAComponent,
-    GaleriaAComponent,
-    LoginAComponent,
-	
-	UsuarioComponent,
     HeaderUComponent,
     FooterUComponent,
     EquipoUComponent,
     JugadorUComponent,
     GaleriaUComponent,
-	InicioUComponent,
-
+    HeaderAComponent,
+    FooterAComponent,
+    EquipoAComponent,
+    JugadorAComponent,
+    GaleriaAComponent,
+    LoginAComponent,
+    AdministradorComponent,
+    UsuarioComponent,
+    InicioUComponent,
    
   ],
   bootstrap: [ AppComponent ]

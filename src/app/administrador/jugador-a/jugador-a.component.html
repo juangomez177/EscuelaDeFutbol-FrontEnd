@@ -1,1 +1,77 @@
 <p>jugador-a works!</p>
+
+<div *ngIf="lista">
+
+    <!-- Mostrar lista de jugadores -->
+    <h2>Mis Jugadores</h2>
+    <!-- Botón Agregar -->
+    <button type="button" class="add-button" (click)="lista = false; form = true">
+        Agregar jugador
+    </button>
+
+    <ul class="jugadores">
+        <li *ngFor="let jugador of jugadores">
+            <a>
+                <span class="badge">{{jugador.id}}</span> {{jugador.nombre}}, {{jugador.id_equipo}}, {{jugador.edad}},
+                {{jugador.nombre_equipo}}, {{jugador.posicion}}
+            </a>
+            <button type="button" class="delete" title="delete jugador" (click)="delete(jugador)">Eliminar</button>
+
+
+            <button type="button" class="edit" title="edit jugador"
+                (click)=" lista = false; editForm = true; editarJugador(jugador); navigateToEdit(jugador.id)">Editar</button>
+        </li>
+    </ul>
+</div>
+
+<!-- Formulario Agregar jugador -->
+<div *ngIf="form">
+    <label for="new-name">Nombre: </label>
+    <input id="new-name" #nombre />
+
+    <label for="new-edad">Edad: </label>
+    <input id="new-edad" #edad />
+
+    <label for="new-equipo">Equipo: </label>
+    <select id="new-equipo" [(ngModel)]="equipoSeleccionado">
+        <option *ngFor="let equipo of equipos"
+            [ngValue]="{ id_equipo: equipo.id, nombre_equipo: equipo.nombre_equipo }">{{equipo.nombre_equipo}}</option>
+    </select>
+
+    <label for="new-posicion">Posición: </label>
+    <select id="new-posicion" #posicion>
+        <option value="portero">Portero</option>
+        <option value="defensa">Defensa</option>
+        <option value="centrocampista">Centrocampista</option>
+        <option value="delantero">Delantero</option>
+    </select>
+
+
+
+    <button type="button" class="add-button"
+        (click)="add(equipoSeleccionado.id_equipo, nombre.value, edad.value, equipoSeleccionado.nombre_equipo, posicion.value); nombre.value=''; edad.value=''; lista = true; form = false">
+        Agregar
+    </button>
+
+    <!-- Botón Volver -->
+    <button type="button" (click)="lista = true; form = false">Volver</button>
+</div>
+
+
+<!-- Formulario Editar jugador -->
+<div *ngIf="editForm && jugadorSeleccionado">
+    <label for="edit-equipo">Nombre </label>
+    <input id="edit-equipo" [(ngModel)]="jugadorSeleccionado.nombre" />
+
+    <label for="edit-capitan">Edad: </label>
+    <input id="edit-capitan" [(ngModel)]="jugadorSeleccionado.edad" />
+
+    <button type="button" class="add-button" (click)="edit(jugadorSeleccionado); editForm = false; lista = true; navigateToBack()">
+        Guardar
+    </button>
+
+    <!-- Botón Volver -->
+    <button type="button" (click)=" editForm = false; lista = true; navigateToBack()">Volver</button>
+
+
+</div>
