@@ -1,6 +1,12 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
+
+import { Login } from '../../models/login';
+import { LoginService } from '../../services/login.service';
+
+import { InMemoryDataService } from '../../in-memory-data.service';
+
 @Component({
   selector: 'app-login-a',
   templateUrl: './login-a.component.html',
@@ -10,21 +16,22 @@ export class LoginAComponent {
     email: string = '';
     password: string = '';
 
-
-  constructor(private router: Router) {}
+  constructor(private router: Router, private loginService: LoginService, private inMemoryDataService: InMemoryDataService,) {}
 
   onSubmit() {
 
+
     
-    if (this.email === 'a' && this.password === '1') {
-      localStorage.setItem('isLoggedIn', 'true'); // Establecer la bandera de inicio de sesión en el almacenamiento local
-      this.router.navigate(['/administrador']); 
+    const usuarios = this.inMemoryDataService.createDb().login;
+    const usuario = usuarios.find(u => u.correo === this.email && u.contraseña === this.password);
+
+    if (usuario) {
+        localStorage.setItem('isLoggedIn', 'true');
+        this.router.navigate(['/administrador']);
     } else {
-     
-     
-      alert('Correo electrónico o contraseña incorrectos.');
+        alert('Correo electrónico o contraseña incorrectos.');
     }
-  }
+}
 }
 
 

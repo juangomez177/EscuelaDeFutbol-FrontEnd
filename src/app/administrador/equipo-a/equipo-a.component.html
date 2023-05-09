@@ -1,72 +1,121 @@
-<p>equipo-a works!</p>
-<div *ngIf="lista">
+<p>Gestión de equipos</p>
 
-    <!-- Mostrar lista de equipos -->
+<!-- Mostrar lista de equipos -->
+<div *ngIf="lista">
     <h2>Mis Equipos</h2>
     <!-- Botón Agregar -->
     <button type="button" class="add-button" (click)="lista = false; form = true">
         Agregar equipo
     </button>
 
-    <ul class="equipos">
-        <li *ngFor="let equipo of equipos">
-            <a>
-                <span class="badge">{{equipo.id}}</span> {{equipo.nombre_equipo}}, {{equipo.categoria}}, {{equipo.capitan}},  {{equipo.entrenador}}
-            </a>
-            <button type="button" class="delete" title="delete equipo" (click)="delete(equipo)">Eliminar</button>
-            <button type="button" class="edit" title="edit equipo"
-                (click)="lista = false; editForm = true; editarEquipo(equipo)">Editar</button>
-        </li>
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre de equipo</th>
+                <th>Categoría</th>
+                <th>Capitán</th>
+                <th>Entrenador</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let equipo of equipos">
+                <td>{{equipo.id}}</td>
+                <td>{{equipo.nombre_equipo}}</td>
+                <td>{{equipo.categoria}}</td>
+                <td>{{equipo.capitan}}</td>
+                <td>{{equipo.entrenador}}</td>
+                <td>
+                    <button type="button" class="delete" title="delete equipo"
+                        (click)="delete(equipo)">Eliminar</button>
+                    <button type="button" class="edit" title="edit equipo"
+                        (click)="lista = false; editForm = true; editarEquipo(equipo)">Editar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
-<div>
-
-
-    <!-- Formulario Agregar equipo -->
-    <div *ngIf="form">
+<!-- Formulario Agregar equipo -->
+<div *ngIf="form">
+    <h2>Nuevo Equipo</h2>
+    <div>
         <label for="new-equipo">Equipo name: </label>
-        <input id="new-equipo" #equipoName />
+        <input id="new-equipo" #equipoName required />
 
         <label for="new-categoria">Categoría: </label>
-        <input id="new-categoria" #equipoCategoria />
+        <input id="new-categoria" #equipoCategoria required />
 
         <label for="new-capitan">Capitan: </label>
-        <input id="new-capitan" #equipoCapitan />
+        <input id="new-capitan" #equipoCapitan required />
 
         <label for="new-entrenador">Entrenador: </label>
-        <input id="new-entrenador" #equipoEntrenador/>
- <!-- 
-        <label for="new-imagen">Imagen: </label>
-  <input id="new-imagen" type="file" (change)="onFileSelected($event)" />
--->
+        <input id="new-entrenador" #equipoEntrenador required />
 
-  <button type="button" class="add-button"
-          (click)="add(equipoName.value,  equipoCategoria.value, equipoCapitan.value, equipoEntrenador.value); equipoName.value=''; 
-          equipoCategoria.value=''; equipoCapitan.value=''; equipoEntrenador.value=''; lista = true; form = false">
-    Agregar
-  </button>
+        <!-- 
+        <label for="new-imagen">Imagen: </label>
+        <input id="new-imagen" type="file" (change)="onFileSelected($event)" />
+        -->
+
+    </div>
+    <div>
+
+        <button type="button" class="add-button" (click)="add(equipoName.value,  equipoCategoria.value, equipoCapitan.value, equipoEntrenador.value); equipoName.value=''; 
+        equipoCategoria.value=''; equipoCapitan.value=''; equipoEntrenador.value=''; lista = true; form = false">
+            Agregar
+        </button>
 
         <!-- Botón Volver -->
         <button type="button" (click)="lista = true; form = false">Volver</button>
+
+
     </div>
 </div>
 
-<div>
-    <!-- Formulario Agregar partido -->
-    <div *ngIf="formP && equipoSeleccionado">
-        <label for="new-partido">Gales Favor: </label>
-        <input id="new-partido" #golesFavor />
+<!-- Formulario Agregar partido -->
 
+<div *ngIf="formP && equipoSeleccionado">
+    <h2>Nuevo Partido</h2>
+    <div>
         <label for="new-partido">Estado: </label>
         <select id="new-partido" #estado>
-            <option value="portero">Ganado</option>
-            <option value="defensa">Perdido</option>
-            <option value="centrocampista">Empate</option>
+            <option value="nada"> </option>
+            <option value="ganado">Ganado</option>
+            <option value="perdido">Perdido</option>
+            <option value="empate">Empate</option>
         </select>
 
-        <button type="button" class="add-button"
-            (click)="addP(equipoSeleccionado.id, golesFavor.value, estado.value); golesFavor.value=''; editForm = true; formP = false">
+        <label for="new-partido">Goles Favor: </label>
+        <input id="new-partido" #golesFavor />
+
+        <label for="new-partido">Goles Contra: </label>
+        <input id="new-partido" #golesContra />
+
+
+        <label for="new-partido">Faltas Cometidas </label>
+        <input id="new-partido" #faltasCom />
+
+        <label for="new-partido">Faltas Recibidas: </label>
+        <input id="new-partido" #faltasRec />
+
+        <label for="new-partido">Fecha: </label>
+        <input id="new-partido" #fecha />
+
+        <label for="new-partido">Lugar </label>
+        <input id="new-partido" #lugar />
+
+        <label for="new-partido">Equipo Rival: </label>
+        <input id="new-partido" #rival />
+
+    </div>
+
+    <div>
+        <button type="button" class="add-button" (click)="addP(equipoSeleccionado.id, estado.value, 
+            golesFavor.value, golesContra.value, faltasCom.value, faltasRec.value,
+            fecha.value,lugar.value, rival.value); 
+            golesFavor.value=''; golesContra.value=''; faltasCom.value=''; faltasRec.value='';
+            fecha.value=''; lugar.value=''; rival.value=''; editForm = true; formP = false">
             Agregar
         </button>
 
@@ -75,27 +124,30 @@
     </div>
 </div>
 
-
 <!-- Formulario Editar Equipo -->
 <div *ngIf="editForm && equipoSeleccionado">
-    <label for="edit-equipo">Equipo name: </label>
-    <input id="edit-equipo" [(ngModel)]="equipoSeleccionado.nombre_equipo" />
+    <h2>Editando equipo</h2>
+    <div>
+        <label for="edit-equipo">Nombre: </label>
+        <input id="edit-equipo" [(ngModel)]="equipoSeleccionado.nombre_equipo" />
 
-    <label for="edit-categoria">Categoría: </label>
-    <input id="edit-categoria" [(ngModel)]="equipoSeleccionado.categoria" />
+        <label for="edit-categoria">Categoría: </label>
+        <input id="edit-categoria" [(ngModel)]="equipoSeleccionado.categoria" />
 
-    <label for="edit-capitan">Capitan: </label>
-    <input id="edit-capitan" [(ngModel)]="equipoSeleccionado.capitan" />
+        <label for="edit-capitan">Capitan: </label>
+        <input id="edit-capitan" [(ngModel)]="equipoSeleccionado.capitan" />
 
-    <label for="edit-entrenador">Entrenador: </label>
-    <input id="edit-entrenador" [(ngModel)]="equipoSeleccionado.entrenador" />
+        <label for="edit-entrenador">Entrenador: </label>
+        <input id="edit-entrenador" [(ngModel)]="equipoSeleccionado.entrenador" />
+    </div>
+    <div>
+        <button type="button" class="add-button" (click)="edit(equipoSeleccionado); editForm = false; lista = true">
+            Guardar
+        </button>
 
-    <button type="button" class="add-button" (click)="edit(equipoSeleccionado); editForm = false; lista = true">
-        Guardar
-    </button>
-
-    <!-- Botón Volver -->
-    <button type="button" (click)="editForm = false; lista = true">Volver</button>
+        <!-- Botón Volver -->
+        <button type="button" (click)="editForm = false; lista = true">Volver</button>
+    </div>
 
     <!-- Mostrar lista de jugadores de cada equipo -->
     <h2>Jugadores</h2>
@@ -103,54 +155,120 @@
     <button type="button" class="add-button" title="add jugador" [routerLink]="['/administrador/jugador']">Agregar
         jugador</button>
 
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Equipo</th>
+                <th>Edad</th>
+                <th>Posición</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let jugador of jugadores">
+                <td>{{jugador.id}}</td>
+                <td>{{jugador.nombre}}</td>
+                <td>{{jugador.nombre_equipo}}</td>
+                <td>{{jugador.edad}}</td>
+                <td>{{jugador.posicion}}</td>
+                <td>
+                    <button type="button" class="edit" title="edit jugador"
+                        [routerLink]="['/administrador/jugador', jugador.id]">Editar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-    <ul class="jugadores">
-
-        <li *ngFor="let jugador of jugadores">
-            <a>
-                <span class="badge">{{jugador.id}}</span> {{jugador.nombre}}, {{jugador.nombre_equipo}}, {{jugador.edad}}, {{jugador.posicion}} 
-            </a>
-
-            <button type="button" class="edit" title="edit jugador"
-                [routerLink]="['/administrador/jugador', jugador.id]">Editar</button>
-        </li>
-    </ul>
-
-
-
+    <!-- Mostrar lista de partidos de cada equipo -->
     <h2>Partidos</h2>
     <!-- Botón Agregar partidos -->
     <button type="button" class="add-button" (click)="editForm = false; formP = true">
         Agregar partido
     </button>
 
-    <ul class="partidos">
-        <li *ngFor="let partido of partidos">
-            <a>
-                <span class="badge">{{partido.id}}</span> {{partido.id_equipo}}, {{partido.goles_favor}}, {{partido.estado}}
-            </a>
-
-            <button type="button" class="delete" title="delete partido" (click)="deleteP(partido)">Eliminar</button>
-            <button type="button" class="edit" title="edit equipo"
-                (click)="editForm = false; editFormP = true; editarPartido(partido)">Editar</button>
-        </li>
-    </ul>
-
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ID_Equipo</th>
+                <th>Estado</th>
+                <th>Goles Favor</th>
+                <th>Goles Contra</th>
+                <th>Faltas Cometidas</th>
+                <th>Faltas Recibidas</th>
+                <th>Fecha</th>
+                <th>Lugar</th>
+                <th>Rival</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let partido of partidos">
+                <td>{{partido.id}}</td>
+                <td>{{partido.id_equipo}}</td>
+                <td>{{partido.estado}}</td>
+                <td>{{partido.goles_favor}}</td>
+                <td>{{partido.goles_contra}}</td>
+                <td>{{partido.faltas_cometidas}}</td>
+                <td>{{partido.faltas_recibidas}}</td>
+                <td>{{partido.fecha}}</td>
+                <td>{{partido.lugar}}</td>
+                <td>{{partido.equipo_rival}}</td>
+                <td>
+                    <button type="button" class="delete" title="delete partido"
+                        (click)="deleteP(partido)">Eliminar</button>
+                    <button type="button" class="edit" title="edit equipo"
+                        (click)="editForm = false; editFormP = true; editarPartido(partido)">Editar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
 </div>
 
 <!-- Formulario Editar Partido -->
 <div *ngIf="editFormP && partidoSeleccionado && equipoSeleccionado">
-    <label for="edit-partido">Goles favor: </label>
-    <input id="edit-partido" [(ngModel)]="partidoSeleccionado.goles_favor" />
+    <h2>Editando Partidos</h2>
+    <div>
+        <label for="edit-partido">Estado: </label>
+        <select id="edit-partido" [(ngModel)]="partidoSeleccionado.estado" #estado>
+            <option [ngValue]="partidoSeleccionado.estado">{{ partidoSeleccionado.estado }}</option>
+            <option *ngIf="partidoSeleccionado.estado !== 'Ganado'" value="ganado">Ganado</option>
+            <option *ngIf="partidoSeleccionado.estado !== 'Perdido'" value="perdido">Perdido</option>
+            <option *ngIf="partidoSeleccionado.estado !== 'Empate'" value="empate">Empate</option>
+        </select>
 
-    <button type="button" class="add-button"
-        (click)="editP(partidoSeleccionado); editFormP = false; editForm = true; getpartidosEquipo(equipoSeleccionado.id)">
-        Guardar
-    </button>
+        <label for="edit-partido">Goles Favor: </label>
+        <input id="edit-partido" [(ngModel)]="partidoSeleccionado.goles_favor" />
 
-    <!-- Botón Volver -->
-    <button type="button" (click)="editFormP = false; editForm = true">Volver</button>
+        <label for="edit-partido">Goles Contra: </label>
+        <input id="edit-partido" [(ngModel)]="partidoSeleccionado.goles_contra" />
 
+        <label for="edit-partido">Faltas Cometidas: </label>
+        <input id="edit-partido" [(ngModel)]="partidoSeleccionado.faltas_cometidas" />
 
+        <label for="edit-partido">Faltas Recibidas: </label>
+        <input id="edit-partido" [(ngModel)]="partidoSeleccionado.faltas_recibidas" />
+
+        <label for="edit-partido">Fecha: </label>
+        <input id="edit-partido" [(ngModel)]="partidoSeleccionado.fecha" />
+
+        <label for="edit-partido">Lugar: </label>
+        <input id="edit-partido" [(ngModel)]="partidoSeleccionado.lugar" />
+
+        <label for="edit-partido">Equipo Rival: </label>
+        <input id="edit-partido" [(ngModel)]="partidoSeleccionado.equipo_rival" />
+
+    </div>
+    <div>
+        <button type="button" class="add-button"
+            (click)="editP(partidoSeleccionado); editFormP = false; editForm = true; getpartidosEquipo(equipoSeleccionado.id)">
+            Guardar
+        </button>
+
+        <!-- Botón Volver -->
+        <button type="button" (click)="editFormP = false; editForm = true">Volver</button>
+    </div>
 </div>

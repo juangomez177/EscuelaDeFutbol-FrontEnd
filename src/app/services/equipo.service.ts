@@ -6,8 +6,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Equipo } from '../models/equipo';
 
-
-
 //import { MessageService } from './message.service';
 
 //Métodos para interactuar con el servicio, como conexión al servidor, consulta, eliminación, etc
@@ -31,8 +29,6 @@ export class EquipoService {
         catchError(this.handleError<Equipo[]>('getEquipos', []))
       );
   }
-
-
 
 
   /** GET Equipo by id. Return `undefined` when id not found */

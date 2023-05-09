@@ -1,0 +1,134 @@
+/* Estilos generales */
+body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    margin: 0;
+  }
+  
+  h2 {
+    color: rgb(255, 253, 253);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  }
+  
+  button {
+    background-color: #555;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 8px 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #333;
+  }
+  
+  /* Estilos para el listado de equipos */
+  table {
+    background-color: #fff;
+    border-collapse: collapse;
+    margin: 16px auto;
+    width: 100%;
+  }
+  
+  thead {
+    background-color: #555;
+    color: #fff;
+  }
+  
+  th,
+  td {
+    padding: 12px;
+    text-align: center;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .delete {
+    background-color: #f44336;
+    margin-right: 8px;
+  }
+  
+  .edit {
+    background-color: #4caf50;
+  }
+  
+  /* Estilos para el formulario Agregar equipo */
+  form {
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 16px auto;
+    max-width: 600px;
+    padding: 16px;
+    text-align: center;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    text-align: left;
+  }
+  
+  input[type="text"],
+  select {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    font-size: 16px;
+    margin-bottom: 16px;
+    padding: 8px;
+    transition: border-bottom 0.3s ease;
+    width: 100%;
+  }
+  
+  input[type="text"]:focus,
+  select:focus {
+    border-bottom: 2px solid #555;
+    outline: none;
+  }
+  
+  .add-button {
+    background-color: #4caf50;
+    margin-top: 16px;
+  }
+  
+  /* Estilos para el formulario Agregar partido */
+  form.partido {
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 16px auto;
+    max-width: 600px;
+    padding: 16px;
+    text-align: center;
+  }
+  
+  /* Estilos para el formulario Editar equipo */
+  form.editar-equipo {
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 16px auto;
+    max-width: 600px;
+    padding: 16px;
+    text-align: center;
+  }
+  
+  /* Estilos para el botón Volver */
+  button.volver {
+    background-color: #ccc;
+    color: #fff;
+    margin-right: 8px;
+  }
+  
+  /* Estilos para la sección "equipo-a works!" */
+  p {
+    background-color: #4caf50;
+    color: #fff;
+    font-size: 24px;
+    margin: 0;
+    padding: 16px;
+    text-align: center;
+  }
+  

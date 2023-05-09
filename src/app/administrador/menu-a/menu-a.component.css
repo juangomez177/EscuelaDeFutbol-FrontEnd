@@ -23,7 +23,7 @@ nav {
     transition: all 0.3s;
   }
   
-  button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+  button:focus {
+    background-color: #4caf50;
+    outline: none;
   }
-  

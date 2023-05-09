@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Login } from '../models/login';
+
 //import { MessageService } from './message.service';
 
 //Métodos para interactuar con el servicio, como conexión al servidor, consulta, eliminación, etc
@@ -16,6 +17,7 @@ export class LoginService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
+
 
   constructor(
     private http: HttpClient) { }
@@ -29,8 +31,6 @@ export class LoginService {
       );
   }
 
-
-  //Necesito un medoto para retornar los login por el id_equipo
 
   /** GET Login by id. Return `undefined` when id not found */
   getLoginNo404<Data>(id: number): Observable<Login> {
@@ -63,14 +63,14 @@ export class LoginService {
     }
     return this.http.get<Login[]>(`${this.loginUrl}/?name=${term}`).pipe(
       tap(x => x.length ?
-         this.log(`found login matching "${term}"`) :
-         this.log(`no login matching "${term}"`)),
+        this.log(`found login matching "${term}"`) :
+        this.log(`no login matching "${term}"`)),
       catchError(this.handleError<Login[]>('searchlogin', []))
     );
   }
 
   //////// Save methods //////////
-  
+
   // /** POST: add a new Login to the server */
   // addLogin(Login: Login): Observable<Login> {
   //   return this.http.post<Login>(this.loginUrl, Login, this.httpOptions).pipe(
@@ -97,7 +97,7 @@ export class LoginService {
   //   );
   // }
 
-  
+
 
 
   /**
@@ -121,11 +121,11 @@ export class LoginService {
     };
   }
 
-    /** Log a loginervice message with the MessageService */
-    private log(message: string) {
-      console.log(message);
-    }
+  /** Log a loginervice message with the MessageService */
+  private log(message: string) {
+    console.log(message);
+  }
 
 
-  
+
 }

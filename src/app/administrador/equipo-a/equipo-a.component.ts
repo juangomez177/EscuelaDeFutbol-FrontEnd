@@ -19,6 +19,8 @@ export class EquipoAComponent implements OnInit {
 
   equipoSeleccionado: Equipo | undefined;
 
+  equipo: any
+
   partidoSeleccionado: Partido | undefined;
 
   jugadores: Jugador[] = [];
@@ -112,7 +114,11 @@ export class EquipoAComponent implements OnInit {
     entrenador = entrenador.trim();
    
 
-    if (!nombre_equipo || !capitan ) { return; }
+    if (!nombre_equipo || !categoria || !capitan || !entrenador) { 
+      
+      alert("Campos obligatorios");
+
+      return; }
     this.equipoService.addEquipo({ nombre_equipo, categoria, capitan, entrenador } as unknown as Equipo)
       .subscribe(equipo => {
         this.equipos.push(equipo);
@@ -130,12 +136,14 @@ export class EquipoAComponent implements OnInit {
   }
 
   //Operaciones básicas para partido:
-  addP(id_equipo: number, golesFavor: string, estado: string) {
+  addP(id_equipo: number, estado: string, goles_favor: string, goles_contra: string, faltas_cometidas: string, faltas_recibidas: string, 
+    fecha: string, lugar: string, equipo_rival: string ) {
 
-    const goles_favor = parseInt(golesFavor);
-
-    if (!id_equipo || !goles_favor || !estado) { return; }
-    this.partidoService.addPartido({ id_equipo, goles_favor, estado } as unknown as Partido)
+  
+    if (!id_equipo || !estado || !goles_favor || !goles_contra || !faltas_cometidas || !faltas_recibidas
+      || !fecha || !lugar || !equipo_rival ) { return; }
+    this.partidoService.addPartido({ id_equipo, estado, goles_favor, goles_contra, faltas_cometidas, faltas_recibidas,
+      fecha, lugar, equipo_rival} as unknown as Partido)
       .subscribe(partido => {
         this.partidos.push(partido);
       });

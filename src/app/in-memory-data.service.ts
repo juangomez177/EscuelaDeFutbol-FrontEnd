@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-//import { Hero } from './hero';
 
 @Injectable({
   providedIn: 'root',
@@ -21,9 +20,12 @@ export class InMemoryDataService implements InMemoryDbService {
     ];
 
     const partidos = [
-      { id: 1, id_equipo: 1, goles_favor: 2, goles_contra: 1, estado:'Ganado'},
-      { id: 2, id_equipo: 1, goles_favor: 0, goles_contra: 3, estado:'Perdido'},
-      { id: 3, id_equipo: 2, goles_favor: 2, goles_contra: 2, estado:'Empate'}
+      { id: 1, id_equipo: 1, estado:'Ganado', goles_favor: 2, goles_contra: 1, faltas_cometidas:2, faltas_recibidas:3,
+      fecha:'23/04/23', lugar:'Estadio 1', equipo_rival:"TunjFC"},
+      { id: 2, id_equipo: 1, estado:'Perdido', goles_favor: 0, goles_contra: 1, faltas_cometidas:1, faltas_recibidas:0,
+      fecha:'12/04/23', lugar:'Estadio 2', equipo_rival:"BucFC"},
+      { id: 3, id_equipo: 2, estado:'Empate', goles_favor: 2, goles_contra: 2, faltas_cometidas:4, faltas_recibidas:5,
+      fecha:'05/04/23', lugar:'Estadio 3', equipo_rival:"BarrFC"}
     
     ];
 
