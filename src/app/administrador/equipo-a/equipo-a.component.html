@@ -61,7 +61,8 @@
     </div>
     <div>
 
-        <button type="button" class="add-button" (click)="add(equipoName.value,  equipoCategoria.value, equipoCapitan.value, equipoEntrenador.value); equipoName.value=''; 
+        <button type="button" class="add-button" (click)="add(equipoName.value,  equipoCategoria.value, equipoCapitan.value, equipoEntrenador.value);
+        equipoName.value=''; 
         equipoCategoria.value=''; equipoCapitan.value=''; equipoEntrenador.value=''; lista = true; form = false">
             Agregar
         </button>
@@ -69,6 +70,10 @@
         <!-- Botón Volver -->
         <button type="button" (click)="lista = true; form = false">Volver</button>
 
+             <!-- Botón Limpiar -->
+             <button type="button" (click)="mostrarSweetAlert2(); equipoName.value=''; 
+             equipoCategoria.value=''; equipoCapitan.value=''; equipoEntrenador.value=''">Limpiar</button>
+ 
 
     </div>
 </div>
@@ -113,7 +118,7 @@
     <div>
         <button type="button" class="add-button" (click)="addP(equipoSeleccionado.id, estado.value, 
             golesFavor.value, golesContra.value, faltasCom.value, faltasRec.value,
-            fecha.value,lugar.value, rival.value); 
+            fecha.value,lugar.value, rival.value);  
             golesFavor.value=''; golesContra.value=''; faltasCom.value=''; faltasRec.value='';
             fecha.value=''; lugar.value=''; rival.value=''; editForm = true; formP = false">
             Agregar
@@ -121,6 +126,12 @@
 
         <!-- Botón Volver -->
         <button type="button" (click)="editForm = true; formP = false">Volver</button>
+    
+            <!-- Botón Limpiar -->
+            <button type="button" (click)="mostrarSweetAlert2(); golesFavor.value=''; golesContra.value=''; faltasCom.value=''; faltasRec.value='';
+            fecha.value=''; lugar.value=''; rival.value=''">Limpiar</button>
+
+    
     </div>
 </div>
 
@@ -147,6 +158,7 @@
 
         <!-- Botón Volver -->
         <button type="button" (click)="editForm = false; lista = true">Volver</button>
+         
     </div>
 
     <!-- Mostrar lista de jugadores de cada equipo -->

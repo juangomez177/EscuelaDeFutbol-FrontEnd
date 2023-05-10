@@ -8,6 +8,9 @@ import { JugadorService } from '../../services/jugador.service';
 
 import { Partido } from '../../models/partido';
 import { PartidoService } from '../../services/partido.service';
+import { Router } from '@angular/router';
+
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-equipo-a',
@@ -34,14 +37,91 @@ export class EquipoAComponent implements OnInit {
   editFormP = false;
 
   constructor(private equipoService: EquipoService, private jugadorService: JugadorService,
-    private partidoService: PartidoService) { }
+    private partidoService: PartidoService, private router: Router) { }
+
 
   ngOnInit(): void {
     this.getEquipos();
-
-
-
   }
+
+  /* 
+ ngOnInit(): void {
+   this.getEquipos();
+   if (this.router.is(['/administrador/equipo/'){
+     this.lista = true;
+     this.form = false;
+     this.editForm = false;
+
+     this.formP = false;
+     this.editFormP = false;
+     this.getEquipos();
+
+   }
+
+   //    /administrador/equipo/id'
+   else if (this.router.is(['/administrador/equipo/'){
+
+     this.equipoService.getEquipo(this.number).subscribe(equipo => this.equipo = equipo);
+     if (this.equipo != null) {
+       this.router.navigate(['/administrador/equipo/', equipo.id]);
+       this.editForm = true;
+       this.lista = false;
+
+     } else {
+
+       this.router.navigate(['/administrador/equipo/');
+       this.editForm = false;
+       this.lista = true;
+     }
+   }
+ }
+*/
+
+  //Sweet alerts
+  mostrarSweetAlert(): void {
+    Swal.fire({
+      icon: 'success',
+      title: 'EXITO',
+      text: '¡Exito en la transacción!',
+      confirmButtonText: 'Aceptar'
+    });
+  }
+
+  mostrarSweetAlert2(): void {
+    Swal.fire({
+      icon: 'success',
+      title: 'EXITO',
+      text: '¡Datos Limpiados!',
+      confirmButtonText: 'Aceptar'
+    });
+  }
+
+  mostrarSweetAlertError(): void {
+    Swal.fire({
+      icon: 'error',
+      title: 'ERROR',
+      text: '¡Campos obligatorios!',
+      confirmButtonText: 'Aceptar'
+    });
+  }
+  
+  mostrarSweetAlertConfirm(): Promise<any> {
+    return new Promise((resolve) => {
+      Swal.fire({
+        title: '¿Está seguro que desea eliminar?',
+        text: "No podrá revertir esta acción",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Eliminar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        resolve(result);
+      });
+    });
+  }
+
 
   getEquipos(): void {
     this.equipoService.getEquipos().subscribe(equipos => this.equipos = equipos);
@@ -66,7 +146,6 @@ export class EquipoAComponent implements OnInit {
   }
 
   editarEquipo(equipo: Equipo): void {
-
     //Copia el equipo
     this.equipoSeleccionado = Object.assign({}, equipo);
 
@@ -75,7 +154,6 @@ export class EquipoAComponent implements OnInit {
 
     //Busca a los partidos con equipo
     this.getpartidosEquipo(this.equipoSeleccionado.id);
-
 
   }
 
@@ -86,8 +164,6 @@ export class EquipoAComponent implements OnInit {
 
     //Busca a los partidos con equipo
     this.getpartidosEquipo(this.partidoSeleccionado.id);
-
-
   }
 
   /*
@@ -112,52 +188,72 @@ export class EquipoAComponent implements OnInit {
     categoria = categoria.trim();
     capitan = capitan.trim();
     entrenador = entrenador.trim();
-   
 
-    if (!nombre_equipo || !categoria || !capitan || !entrenador) { 
-      
-      alert("Campos obligatorios");
+    if (!nombre_equipo || !categoria || !capitan || !entrenador) {
 
-      return; }
+      this.mostrarSweetAlertError();
+
+      return;
+    }
     this.equipoService.addEquipo({ nombre_equipo, categoria, capitan, entrenador } as unknown as Equipo)
       .subscribe(equipo => {
         this.equipos.push(equipo);
       });
+    this.mostrarSweetAlert();
   }
 
   edit(equipo: Equipo): void {
+
     this.equipoService.updateEquipo(equipo).subscribe();
     this.getEquipos();
+    this.mostrarSweetAlert();
   }
 
   delete(equipo: Equipo): void {
-    this.equipos = this.equipos.filter(h => h !== equipo);
-    this.equipoService.deleteEquipo(equipo.id).subscribe();
+    this.mostrarSweetAlertConfirm().then((result) => {
+      if (result.isConfirmed) {
+        this.equipos = this.equipos.filter(h => h !== equipo);
+        this.equipoService.deleteEquipo(equipo.id).subscribe();
+        this.mostrarSweetAlert();
+
+      }
+    });
   }
 
   //Operaciones básicas para partido:
-  addP(id_equipo: number, estado: string, goles_favor: string, goles_contra: string, faltas_cometidas: string, faltas_recibidas: string, 
-    fecha: string, lugar: string, equipo_rival: string ) {
+  addP(id_equipo: number, estado: string, goles_favor: string, goles_contra: string, faltas_cometidas: string, faltas_recibidas: string,
+    fecha: string, lugar: string, equipo_rival: string) {
 
-  
     if (!id_equipo || !estado || !goles_favor || !goles_contra || !faltas_cometidas || !faltas_recibidas
-      || !fecha || !lugar || !equipo_rival ) { return; }
-    this.partidoService.addPartido({ id_equipo, estado, goles_favor, goles_contra, faltas_cometidas, faltas_recibidas,
-      fecha, lugar, equipo_rival} as unknown as Partido)
+      || !fecha || !lugar || !equipo_rival) {
+      this.mostrarSweetAlertError();
+      return;
+    }
+    this.partidoService.addPartido({
+      id_equipo, estado, goles_favor, goles_contra, faltas_cometidas, faltas_recibidas,
+      fecha, lugar, equipo_rival
+    } as unknown as Partido)
       .subscribe(partido => {
         this.partidos.push(partido);
       });
+    this.mostrarSweetAlert();
   }
 
   editP(partido: Partido): void {
     this.partidoService.updatePartido(partido).subscribe();
     //this.getpartidosEquipo(this.equipoSeleccionado.id);
+    this.mostrarSweetAlert();
   }
 
   deleteP(partido: Partido): void {
-    this.partidos = this.partidos.filter(h => h !== partido);
-    this.partidoService.deletePartido(partido.id).subscribe();
+    this.mostrarSweetAlertConfirm().then((result) => {
+      if (result.isConfirmed) {
+
+        this.partidos = this.partidos.filter(h => h !== partido);
+        this.partidoService.deletePartido(partido.id).subscribe();
+        this.mostrarSweetAlert();
+
+      }
+    });
   }
-
-
 }

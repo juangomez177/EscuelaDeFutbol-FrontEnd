@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 
   { path: '', redirectTo: '/usuario/inicio', pathMatch: 'full' },
+
   { path: 'login', component: LoginAComponent },
 
   { path: 'administrador', component: AdministradorComponent, canActivate: [AuthGuard],
@@ -40,7 +41,14 @@ const routes: Routes = [
       { path: 'galeria', component: GaleriaUComponent }
 
     ]
+  },
+
+  {
+    path: 'administrador/equipo/:id',
+    component: EquipoAComponent
   }
+
+
 
 ];
 
