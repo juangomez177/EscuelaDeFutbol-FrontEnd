@@ -1,5 +1,7 @@
+
 nav {
     background-color: #333;
+
   }
   
   ul {
@@ -21,6 +23,8 @@ nav {
     font-size: 1em;
     padding: 0.5em 1em;
     transition: all 0.3s;
+    
+    
   }
   
   button:focus {

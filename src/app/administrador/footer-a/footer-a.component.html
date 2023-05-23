@@ -1,21 +1,31 @@
 <footer class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <h4 class="footer-title">Contacto</h4>
-          <p class="footer-info"><i class="fas fa-phone"></i> Teléfono: 555-555-5555</p>
-          <p class="footer-info"><i class="fas fa-envelope"></i> Correo electrónico: info@example.com</p>
-          <p class="footer-info"><i class="fas fa-map-marker-alt"></i> Dirección: Calle Falsa 123, Ciudad Ficticia</p>
-        </div>
-        <div class="col-md-6">
-          <h4 class="footer-title">Patrocinadores</h4>
-          <div class="sponsor-logos">
-            <img src="assets/sponsor1.png" alt="Sponsor 1">
-            <img src="assets/sponsor2.png" alt="Sponsor 2">
-            <img src="assets/sponsor3.png" alt="Sponsor 3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h4 class="footer-title">Contacto</h4>
+        <div class="footer-info-container">
+          <div class="footer-info">
+            <fa-icon [icon]="phoneIcon"></fa-icon>
+            <span>Teléfono: 555-555-5555</span>
+          </div>
+          <div class="footer-info">
+            <fa-icon [icon]="envelopeIcon"></fa-icon>
+            <span>Correo electrónico: info@example.com</span>
+          </div>
+          <div class="footer-info">
+            <fa-icon [icon]="mapMarkerIcon"></fa-icon>
+            <span>Dirección: Calle Falsa 123, Ciudad Ficticia</span>
           </div>
         </div>
       </div>
+      <div class="col-md-6">
+        <h4 class="footer-title">Patrocinadores</h4>
+        <div class="sponsor-logos">
+          <img src="assets/images/sponsor1.png" alt="Sponsor 1">
+          <img src="assets/images/sponsor2.png" alt="Sponsor 2">
+          <img src="assets/images/sponsor3.png" alt="Sponsor 3">
+        </div>
+      </div>
     </div>
-  </footer>
-  
+  </div>
+</footer>

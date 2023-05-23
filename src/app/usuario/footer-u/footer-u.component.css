@@ -1,35 +1,83 @@
 .footer {
-    background-color: #333;
-    color: #fff;
-    padding: 50px 0;
-  }
-  
-  .footer-title {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .footer-info {
-    font-size: 16px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .footer-info i {
-    font-size: 20px;
-    margin-right: 10px;
-  }
-  
-  .sponsor-logos {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  
-  .sponsor-logos img {
-    width: 100px;
-    margin: 20px;
-  }
-  
+  background-color: rgba(51, 51, 51, .9);
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+
+}
+
+.footer-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.footer-info-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.footer-info fa-icon {
+  margin-right: 5px;
+}
+
+.footer-info span {
+  display: flex;
+  align-items: center;
+}
+
+.footer-info span:first-child {
+  margin-right: 5px;
+}
+
+.footer-info span:last-child {
+  margin-left: 5px;
+}
+
+.footer-info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+
+.sponsor-logos img {
+  width: 125px;
+  margin: 30px;
+}
+
+.sponsor-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+/* Agregar estilos de transición */
+.footer-info i {
+  transition: color 0.3s ease;
+}
+
+.footer-info i:hover {
+  color: #ffcc00;
+}
+
+.sponsor-logos img {
+  transition: transform 0.3s ease;
+}
+
+.sponsor-logos img:hover {
+  transform: scale(1.7);
+}

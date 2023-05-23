@@ -8,7 +8,8 @@ import { JugadorService } from '../../services/jugador.service';
 
 import { Partido } from '../../models/partido';
 import { PartidoService } from '../../services/partido.service';
-import { Router } from '@angular/router';
+
+import { ActivatedRoute, Router } from '@angular/router';
 
 import Swal from 'sweetalert2';
 
@@ -22,7 +23,9 @@ export class EquipoAComponent implements OnInit {
 
   equipoSeleccionado: Equipo | undefined;
 
-  equipo: any
+
+
+  equipo: any = {}
 
   partidoSeleccionado: Partido | undefined;
 
@@ -35,14 +38,52 @@ export class EquipoAComponent implements OnInit {
 
   formP = false;
   editFormP = false;
+  url2: any;
+
 
   constructor(private equipoService: EquipoService, private jugadorService: JugadorService,
-    private partidoService: PartidoService, private router: Router) { }
+    private partidoService: PartidoService, private router: Router, private route: ActivatedRoute) { }
 
 
-  ngOnInit(): void {
-    this.getEquipos();
-  }
+    ngOnInit(): void {
+
+
+      this.getEquipos();
+
+
+      /*
+      const id = this.route.snapshot.paramMap.get('id');
+      
+      // Si el ID está vacío, navegar a la ruta principal
+      if (!id) {
+        
+        this.router.navigate(['/administrador/equipo']);
+        
+      } else {
+        const id2 = parseInt(id);
+        this.equipoService.getEquipo(id2).subscribe(equipo => {
+          
+          // Si no hay un equipo correspondiente al ID, navegar a la ruta principal
+          if (!equipo) {
+            this.router.navigate(['/administrador/equipo']);
+
+          //Abra el formulario del equipo  
+          } else {
+            this.equipo = equipo;
+          
+            this.lista = false; 
+            this.editForm = true;
+            this.editarEquipo(equipo)
+    
+          }
+        });
+      }
+
+      */
+    }
+
+   
+    
 
   /* 
  ngOnInit(): void {
@@ -104,7 +145,7 @@ export class EquipoAComponent implements OnInit {
       confirmButtonText: 'Aceptar'
     });
   }
-  
+
   mostrarSweetAlertConfirm(): Promise<any> {
     return new Promise((resolve) => {
       Swal.fire({
@@ -199,6 +240,7 @@ export class EquipoAComponent implements OnInit {
       .subscribe(equipo => {
         this.equipos.push(equipo);
       });
+    this.getEquipos();
     this.mostrarSweetAlert();
   }
 
@@ -212,6 +254,7 @@ export class EquipoAComponent implements OnInit {
   delete(equipo: Equipo): void {
     this.mostrarSweetAlertConfirm().then((result) => {
       if (result.isConfirmed) {
+
         this.equipos = this.equipos.filter(h => h !== equipo);
         this.equipoService.deleteEquipo(equipo.id).subscribe();
         this.mostrarSweetAlert();
@@ -227,6 +270,7 @@ export class EquipoAComponent implements OnInit {
     if (!id_equipo || !estado || !goles_favor || !goles_contra || !faltas_cometidas || !faltas_recibidas
       || !fecha || !lugar || !equipo_rival) {
       this.mostrarSweetAlertError();
+      this.getPartidos();
       return;
     }
     this.partidoService.addPartido({
@@ -237,6 +281,7 @@ export class EquipoAComponent implements OnInit {
         this.partidos.push(partido);
       });
     this.mostrarSweetAlert();
+    this.getPartidos();
   }
 
   editP(partido: Partido): void {

@@ -9,6 +9,7 @@ import { Jugador } from '../../models/jugador';
 import { JugadorService } from '../../services/jugador.service';
 
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-jugador-a',
@@ -17,12 +18,10 @@ import { Router } from '@angular/router';
 })
 export class JugadorAComponent implements OnInit {
 
-  
-
   jugadores: Jugador[] = [];
   equipos: Equipo[] = [];
   jugadorSeleccionado: Jugador | undefined;
-  equipoSeleccionado: any;
+  equipoSeleccionado: any= {}; 
 
   lista = true;
   form = false;
@@ -41,9 +40,16 @@ export class JugadorAComponent implements OnInit {
   ngOnInit(): void {
     this.getJugadores();
     this.getEquipos();
+
+   /* Necesito poder verificar si la petición viene de gestionar equipos, si es así debo inicializar
   
-    
+    equipoSeleccionado con los datos del equpo en cuestión.
+
+    Si la petición viene directamente del menú de opciones de jugador, entonces equipoSeleccionado se deja nulo.*/
   }
+
+  /*
+
   navigateToEdit(id: number) {
     
     this.router.navigate(['/administrador/jugador/', id]);
@@ -54,6 +60,58 @@ export class JugadorAComponent implements OnInit {
   navigateToBack() {
     this.router.navigate(['/administrador/jugador/']);
   }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+*/
+
+  //Sweet alerts
+  mostrarSweetAlert(): void {
+    Swal.fire({
+      icon: 'success',
+      title: 'EXITO',
+      text: '¡Exito en la transacción!',
+      confirmButtonText: 'Aceptar'
+    });
+  }
+
+  mostrarSweetAlert2(): void {
+    Swal.fire({
+      icon: 'success',
+      title: 'EXITO',
+      text: '¡Datos Limpiados!',
+      confirmButtonText: 'Aceptar'
+    });
+  }
+
+  mostrarSweetAlertError(): void {
+    Swal.fire({
+      icon: 'error',
+      title: 'ERROR',
+      text: '¡Campos obligatorios!',
+      confirmButtonText: 'Aceptar'
+    });
+  }
+  
+  mostrarSweetAlertConfirm(): Promise<any> {
+    return new Promise((resolve) => {
+      Swal.fire({
+        title: '¿Está seguro que desea eliminar?',
+        text: "No podrá revertir esta acción",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Eliminar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        resolve(result);
+      });
+    });
+  }
+
 
 
 
@@ -66,9 +124,7 @@ export class JugadorAComponent implements OnInit {
     this.equipoService.getEquipos().subscribe(equipos => this.equipos = equipos);
   }
 
-  goBack(): void {
-    this.location.back();
-  }
+  
 
   editarJugador(jugador: Jugador): void {
 
@@ -78,27 +134,46 @@ export class JugadorAComponent implements OnInit {
   }
 
     //Operaciones básicas para jugador
-    add(id_equipo: number, nombre: string, edad: string, nombre_equipo: string, posicion: string): void {
-   
-      if (!id_equipo|| !nombre || !edad || !nombre_equipo || !posicion) { return; }
-      this.jugadorService.addJugador({ id_equipo, nombre, edad, nombre_equipo, posicion } as unknown as Jugador)
+    add(id_equipo: number, nombre: string, edad: string, categoria: string, nombre_equipo: string, posicion: string, n_camiseta: string, telefono: string, correo: string ): void {
+  
+      if (!id_equipo|| !nombre || !edad || !categoria || !nombre_equipo || !posicion || !n_camiseta || !telefono || !correo) { 
+        
+        this.mostrarSweetAlertError();
+        
+        return; }
+      this.jugadorService.addJugador({ id_equipo, nombre, edad, categoria, nombre_equipo, posicion, n_camiseta, telefono, correo  } as unknown as Jugador)
         .subscribe(jugador => {
           this.jugadores.push(jugador);
         });
+
+       
         this.getJugadores();
+        this.mostrarSweetAlert();
 
     }
 
 
     edit(jugador: Jugador): void {
       this.jugadorService.updateJugador(jugador).subscribe();
+      
       this.getJugadores();
+      this.mostrarSweetAlert();
+      
     }
   
     delete(jugador: Jugador): void {
+      this.mostrarSweetAlertConfirm().then((result) => {
+        if (result.isConfirmed) {
+          
+
       this.jugadores = this.jugadores.filter(h => h !== jugador);
       this.jugadorService.deleteJugador(jugador.id).subscribe();
+      this.mostrarSweetAlert();
+
+
     }
+  });
+}
 
 
 

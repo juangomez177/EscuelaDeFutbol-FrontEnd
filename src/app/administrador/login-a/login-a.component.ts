@@ -32,7 +32,7 @@ export class LoginAComponent {
       });
 
         localStorage.setItem('isLoggedIn', 'true');
-        this.router.navigate(['/administrador']);
+        this.router.navigate(['/administrador/equipo']);
     } else {
       
         Swal.fire({

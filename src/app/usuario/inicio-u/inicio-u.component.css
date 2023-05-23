@@ -3,18 +3,38 @@
 /* Hero */
 .hero {
     height: 80vh;
-    background-image: url('/assets/c.jpg');
+    background-image: url('/assets/images/c.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
+  .formMain {
+    background-color: rgba(51, 51, 51, .9);
+    color: #fff;
+  
+  
+  }
+
+
+
+  .formMain2 {
+    background-color: rgba(255, 253, 253, 0.2);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    
+  }
+
+
   
   .hero-title {
     font-size: 4rem;
     text-align: center;
     color: #fff;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
   }
   
   .hero-subtitle {
@@ -22,6 +42,7 @@
     text-align: center;
     color: #fff;
     margin-bottom: 2rem;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
   }
   
   .btn-primary {
@@ -45,26 +66,35 @@
   }
   
   .about-title {
-    font-size: 3rem;
+    font-size: 2rem;
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
+    margin-top: 3rem;
+    color: #fff;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
   }
   
   .about-description {
     font-size: 1.5rem;
     line-height: 2.5rem;
-    text-align: justify;
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+
   }
   
   /* Gallery */
   .gallery {
-    padding: 5rem 0;
+    padding: 1rem 0;
   }
   
   .gallery-title {
-    font-size: 3rem;
+    font-size: 2rem;
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+    margin-top: 5rem;
+    color: #fff;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
   }
   
   .gallery-container {

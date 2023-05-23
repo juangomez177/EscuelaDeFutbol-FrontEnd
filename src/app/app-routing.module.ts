@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'administrador', component: AdministradorComponent, canActivate: [AuthGuard],
     children: [
       { path: 'equipo', component: EquipoAComponent, canActivate: [AuthGuard]  },
+      { path: 'equipo/:id', component: EquipoAComponent, canActivate: [AuthGuard]  },
       { path: 'jugador', component: JugadorAComponent, canActivate: [AuthGuard]  },
       { path: 'jugador/:id', component: JugadorAComponent, canActivate: [AuthGuard]  },
       { path: 'galeria', component: GaleriaAComponent, canActivate: [AuthGuard]  }
@@ -44,7 +45,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'administrador/equipo/:id',
+    path: 'administrador/partido/:id',
     component: EquipoAComponent
   }
 

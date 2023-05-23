@@ -30,7 +30,6 @@ export class EquipoService {
       );
   }
 
-
   /** GET Equipo by id. Return `undefined` when id not found */
   getEquipoNo404<Data>(id: number): Observable<Equipo> {
     const url = `${this.equiposUrl}/?id=${id}`;

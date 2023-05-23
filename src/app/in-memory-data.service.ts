@@ -13,9 +13,9 @@ export class InMemoryDataService implements InMemoryDbService {
     ];
 
     const jugadores = [
-      { id: 1, id_equipo: 1, nombre: 'Juan', edad: 25, nombre_equipo:'CaliFC', posicion: 'Delantero'},
-      { id: 2, id_equipo: 1, nombre: 'David', edad: 20, nombre_equipo:'CaliFC', posicion: 'Centrocampista'},
-      { id: 3, id_equipo: 2, nombre: 'Uber', edad: 26, nombre_equipo:'FCMed', posicion: 'Portero' }
+      { id: 1, id_equipo: 1, nombre: 'Juan', edad: 25, categoria: 2000, nombre_equipo:'CaliFC', posicion: 'Delantero', n_camiseta:10, telefono: 555-555, correo:'juan@gmail.com'},
+      { id: 2, id_equipo: 1, nombre: 'David', edad: 20,  categoria: 2000, nombre_equipo:'CaliFC', posicion: 'Centrocampista', n_camiseta:7, telefono: 555-222, correo:'david@gmail.com'},
+      { id: 3, id_equipo: 2, nombre: 'Uber', edad: 26,  categoria: 2017, nombre_equipo:'FCMed', posicion: 'Portero', n_camiseta:1, telefono: 222-555, correo:'uber@gmail.com'}
 
     ];
 
