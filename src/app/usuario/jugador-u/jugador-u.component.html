@@ -1,138 +1,149 @@
 <p>Visualizar jugadores</p>
 
- <!-- Mostrar lista de jugadores -->
+<!-- Mostrar lista de jugadores -->
 <div *ngIf="lista">
-   
-    <h2>Jugadores</h2>
-  
-    <table>
-      <thead>
-        <tr>
-  
-          <th>Nombre</th>
-          <th>Edad</th>
-          <th>Categoría</th>
-          <th>Nombre Equipo</th>
-          <th>Posición</th>
-          <th>Número de Camiseta</th>
-          <th>Teléfono</th>
-          <th>Correo</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let jugador of jugadores">
-          <td>{{ jugador.nombre }}</td>
-          <td>{{ jugador.edad }}</td>
-          <td>{{ jugador.categoria }}</td>
-          <td>{{ jugador.nombre_equipo }}</td>
-          <td>{{ jugador.posicion }}</td>
-          <td>{{ jugador.n_camiseta }}</td>
-          <td>{{ jugador.telefono }}</td>
-          <td>{{ jugador.correo }}</td>
-          <td>
+  <h2>Jugadores</h2>
 
-            <button
-              type="button"
-              class="edit"
-              title="details jugador"
-              (click)="lista = false; editForm = true; visualizarJugador(jugador)"
-            >
-              Detalles
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <input
+    type="text"
+    [(ngModel)]="filtro"
+    (input)="filtrarJugadores()"
+    placeholder="Filtro de jugadores"
+  />
 
-  
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Categoría</th>
+        <th>Nombre Equipo</th>
+        <th>Posición</th>
+        <th>Número de Camiseta</th>
+        <th>Teléfono</th>
+        <th>Correo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let jugador of jugadoresFiltrados">
+        <td>{{ jugador.nombre }}</td>
+        <td>{{ jugador.edad }}</td>
+        <td>{{ jugador.categoria }}</td>
+        <td>{{ jugador.nombre_equipo }}</td>
+        <td>{{ jugador.posicion }}</td>
+        <td>{{ jugador.n_camiseta }}</td>
+        <td>{{ jugador.telefono }}</td>
+        <td>{{ jugador.correo }}</td>
+        <td>
+          <button
+            type="button"
+            class="edit"
+            title="details jugador"
+            (click)="lista = false; editForm = true; visualizarJugador(jugador)"
+          >
+            Detalles
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <!-- Formulario Visualizar jugador -->
 <div *ngIf="editForm && jugadorSeleccionado">
-    <h2>Detalles Jugador</h2>
-    <div class="formMain">
-      <div>
-        <div class="form-field">
-          <label for="edit-jugador">Nombre </label>
-          <input id="edit-jugador" readonly [(ngModel)]="jugadorSeleccionado.nombre" />
-        </div>
-        <div class="form-field">
-          <label for="edit-edad">Edad: </label>
-          <input
-            id="edit-edad" readonly
-            type="text"
-            [(ngModel)]="jugadorSeleccionado.edad"
-          />
-        </div>
+  <h2>Detalles Jugador</h2>
+  <div class="formMain">
+    <div>
+      <div class="form-field">
+        <label for="edit-jugador">Nombre </label>
+        <input
+          id="edit-jugador"
+          readonly
+          [(ngModel)]="jugadorSeleccionado.nombre"
+        />
+      </div>
+      <div class="form-field">
+        <label for="edit-edad">Edad: </label>
+        <input
+          id="edit-edad"
+          readonly
+          type="text"
+          [(ngModel)]="jugadorSeleccionado.edad"
+        />
+      </div>
 
-        <div class="form-field">
-            <label for="edit-categoria">Categoría: </label>
-            <input
-              id="edit-categoria" readonly
-              type="text"
-              [(ngModel)]="jugadorSeleccionado.categoria"
-            />
-          </div>
+      <div class="form-field">
+        <label for="edit-categoria">Categoría: </label>
+        <input
+          id="edit-categoria"
+          readonly
+          type="text"
+          [(ngModel)]="jugadorSeleccionado.categoria"
+        />
+      </div>
 
+      <div class="form-field">
+        <label for="edit-equipo">Equipo: </label>
+        <input
+          id="edit-equipo"
+          readonly
+          type="text"
+          [(ngModel)]="jugadorSeleccionado.nombre_equipo"
+        />
+      </div>
 
-        <div class="form-field">
-            <label for="edit-equipo">Equipo: </label>
-            <input
-              id="edit-equipo" readonly
-              type="text"
-              [(ngModel)]="jugadorSeleccionado.nombre_equipo"
-            />
-          </div>
+      <div class="form-field">
+        <label for="edit-posicion">Posición: </label>
+        <input
+          id="edit-posicion"
+          readonly
+          type="text"
+          [(ngModel)]="jugadorSeleccionado.posicion"
+        />
+      </div>
 
-          <div class="form-field">
-            <label for="edit-posicion">Posición: </label>
-            <input
-              id="edit-posicion" readonly
-              type="text"
-              [(ngModel)]="jugadorSeleccionado.posicion"
-            />
-          </div>
+      <div class="form-field">
+        <label for="edit-camiseta">Número de Camiseta: </label>
+        <input
+          id="edit-camiseta"
+          readonly
+          type="text"
+          [(ngModel)]="jugadorSeleccionado.n_camiseta"
+        />
+      </div>
 
+      <div class="form-field">
+        <label for="edit-telefono">Teléfono: </label>
+        <input
+          id="edit-telefono"
+          readonly
+          type="text"
+          [(ngModel)]="jugadorSeleccionado.telefono"
+        />
+      </div>
 
-        <div class="form-field">
-          <label for="edit-camiseta">Número de Camiseta: </label>
-          <input
-            id="edit-camiseta" readonly
-            type="text"
-            [(ngModel)]="jugadorSeleccionado.n_camiseta"
-          />
-        </div>
-  
-        <div class="form-field">
-          <label for="edit-telefono">Teléfono: </label>
-          <input
-            id="edit-telefono" readonly
-            type="text"
-            [(ngModel)]="jugadorSeleccionado.telefono"
-          />
-        </div>
-  
-        <div class="form-field">
-          <label for="edit-correo">Correo: </label>
-          <input
-            id="edit-correo" readonly
-            type="text"
-            [(ngModel)]="jugadorSeleccionado.correo"
-          />
-        </div>
+      <div class="form-field">
+        <label for="edit-correo">Correo: </label>
+        <input
+          id="edit-correo"
+          readonly
+          type="text"
+          [(ngModel)]="jugadorSeleccionado.correo"
+        />
       </div>
     </div>
-  
-    <div>
+  </div>
 
-      <!-- Botón Volver -->
-      <button
-        type="button"
-        class="volver"
-        (click)="editForm = false; lista = true"
-      >
-        Volver
-      </button>
-    </div>
+  <div>
+    
+    <!-- Botón Volver -->
+    <button
+      type="button"
+      class="volver"
+      (click)="volver(); editForm = false; lista = true"
+    >
+      Volver
+    </button>
+  </div>
 </div>
-  

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { FooterUComponent } from './footer-u.component';
 
 describe('FooterUComponent', () => {

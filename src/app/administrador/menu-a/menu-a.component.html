@@ -1,17 +1,15 @@
 <nav>
-    <ul>
-    
-      <li><button routerLink="/administrador/equipo">Gestionar Equipos</button></li>
-      <li><button routerLink="/administrador/jugador">Gestionar Jugadores</button></li>
-      <li><button routerLink="/administrador/galeria">Gestionar Galería</button></li>
-      <li><button routerLink="/usuario/inicio">Pasar al modo usuario</button></li>
-      <li><button (click)="logout()">Cerrar sesión</button></li>
-    </ul>
-  </nav>
-
-
-
-
-
-
-
+  <ul>
+    <li>
+      <button routerLink="/administrador/equipo" routerLinkActive="active-option">Gestionar Equipos</button>
+    </li>
+    <li>
+      <button routerLink="/administrador/jugador" routerLinkActive="active-option">Gestionar Jugadores</button>
+    </li>
+    <li>
+      <button routerLink="/administrador/galeria" routerLinkActive="active-option">Gestionar Galería</button>
+    </li>
+    <li><button routerLink="/usuario/inicio">Pasar al modo usuario</button></li>
+    <li><button (click)="logout()">Cerrar sesión</button></li>
+  </ul>
+</nav>

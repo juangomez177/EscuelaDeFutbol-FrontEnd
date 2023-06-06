@@ -3,10 +3,23 @@
 <div *ngIf="lista">
   <!-- Mostrar lista de jugadores -->
   <h2>Mis Jugadores</h2>
+  
   <!-- Botón Agregar -->
-  <button type="button" class="add-button" (click)="lista = false; form = true">
+  <button
+    type="button"
+    class="add-button"
+    [routerLink]="['/administrador/jugador/nuevo']"
+    (click)="lista = false; form = true"
+  >
     Agregar jugador
   </button>
+
+  <input
+    type="text"
+    [(ngModel)]="filtro"
+    (input)="filtrarJugadores()"
+    placeholder="Filtro de jugadores"
+  />
 
   <table>
     <thead>
@@ -25,7 +38,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let jugador of jugadores">
+      <tr *ngFor="let jugador of jugadoresFiltrados">
         <td>{{ jugador.id }}</td>
         <td>{{ jugador.id_equipo }}</td>
         <td>{{ jugador.nombre }}</td>
@@ -59,8 +72,6 @@
   </table>
 </div>
 
-
-
 <!-- Formulario Agregar jugador -->
 <div *ngIf="form">
   <h2>Nuevo Jugador</h2>
@@ -90,10 +101,6 @@
         </select>
       </div>
 
-      
-
-
-
       <div class="form-field">
         <label for="new-posicion">Posición: </label>
         <select id="new-posicion" #posicion>
@@ -110,7 +117,7 @@
       </div>
       <div class="form-field">
         <label for="new-telefono">Teléfono: </label>
-        <input id="new-telefono" type="tel"  #telefono />
+        <input id="new-telefono" type="tel" #telefono />
       </div>
       <div class="form-field">
         <label for="new-correo">Correo: </label>
@@ -139,17 +146,18 @@
         posicion.value = '';
         camiseta.value = '';
         telefono.value = '';
-        correo.value = '';
-        lista = true;
-        form = false
-        
+        correo.value = ''
       "
     >
       Agregar
     </button>
 
     <!-- Botón Volver -->
-    <button type="button" class="volver" (click)="lista = true; form = false">
+    <button
+      type="button"
+      class="volver"
+      (click)="volver(); lista = true; form = false"
+    >
       Volver
     </button>
 
@@ -174,7 +182,7 @@
 
 <!-- Formulario Editar jugador -->
 <div *ngIf="editForm && jugadorSeleccionado">
-  <h2>Editando Jugador</h2>
+  <h2>Editando Jugador2</h2>
   <div class="formMain">
     <div>
       <div class="form-field">
@@ -195,16 +203,13 @@
           id="edit-equipo"
           [(ngModel)]="jugadorSeleccionado.nombre_equipo"
         >
-          <option [ngValue]="jugadorSeleccionado.nombre_equipo">
+          <option [value]="jugadorSeleccionado.nombre_equipo">
             {{ jugadorSeleccionado.nombre_equipo }}
           </option>
           <ng-container *ngFor="let equipo of equipos">
             <option
               *ngIf="equipo.id !== jugadorSeleccionado.id_equipo"
-              [ngValue]="{
-                id_equipo: equipo.id,
-                nombre_equipo: equipo.nombre_equipo
-              }"
+              [value]="equipo.nombre_equipo"
             >
               {{ equipo.nombre_equipo }}
             </option>
@@ -286,7 +291,7 @@
     <button
       type="button"
       class="volver"
-      (click)="editForm = false; lista = true"
+      (click)="volver(); editForm = false; lista = true"
     >
       Volver
     </button>

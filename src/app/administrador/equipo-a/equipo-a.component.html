@@ -3,8 +3,14 @@
 <!-- Mostrar lista de equipos -->
 <div *ngIf="lista">
   <h2>Mis Equipos</h2>
-  <!-- Botón Agregar -->
-  <button type="button" class="add-button" (click)="lista = false; form = true">
+
+  <!-- Botón Agregar equipos-->
+  <button
+    type="button"
+    class="add-button"
+    [routerLink]="['/administrador/equipo/nuevo']"
+    (click)="lista = false; form = true"
+  >
     Agregar equipo
   </button>
 
@@ -71,11 +77,6 @@
         <label for="new-entrenador">Entrenador: </label>
         <input id="new-entrenador" #equipoEntrenador required />
       </div>
-
-      <!-- 
-        <label for="new-imagen">Imagen: </label>
-        <input id="new-imagen" type="file" (change)="onFileSelected($event)" />
-        -->
     </div>
   </div>
 
@@ -93,16 +94,18 @@
         equipoName.value = '';
         equipoCategoria.value = '';
         equipoCapitan.value = '';
-        equipoEntrenador.value = '';
-        lista = true;
-        form = false
+        equipoEntrenador.value = ''
       "
     >
       Agregar
     </button>
 
     <!-- Botón Volver -->
-    <button type="button" class="volver" (click)="lista = true; form = false">
+    <button
+      type="button"
+      class="volver"
+      (click)="volver(); lista = true; form = false"
+    >
       Volver
     </button>
 
@@ -124,7 +127,6 @@
 </div>
 
 <!-- Formulario Agregar partido -->
-
 <div *ngIf="formP && equipoSeleccionado">
   <h2>Nuevo Partido</h2>
   <div class="formMain">
@@ -198,9 +200,7 @@
         faltasRec.value = '';
         fecha.value = '';
         lugar.value = '';
-        rival.value = '';
-        editForm = true;
-        formP = false
+        rival.value = ''
       "
     >
       Agregar
@@ -278,7 +278,7 @@
     <button
       type="button"
       class="volver"
-      (click)="editForm = false; lista = true"
+      (click)="volver(); editForm = false; lista = true"
     >
       Volver
     </button>
@@ -286,32 +286,33 @@
 
   <!-- Mostrar lista de jugadores de cada equipo -->
   <h2>Jugadores</h2>
+
   <!-- Botón Agregar jugadores -->
   <button
     type="button"
     class="add-button"
     title="add jugador"
-    [routerLink]="['/administrador/jugador']"
+    [routerLink]="['/administrador/jugador/nuevo']"
   >
-    Agregar jugador
+    Agregar Jugador
   </button>
 
   <table>
     <thead>
-        <tr>
-          <th>ID</th>
-          <th>ID Equipo</th>
-          <th>Nombre</th>
-          <th>Edad</th>
-          <th>Categoría</th>
-          <th>Nombre Equipo</th>
-          <th>Posición</th>
-          <th>Número de Camiseta</th>
-          <th>Teléfono</th>
-          <th>Correo</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
+      <tr>
+        <th>ID</th>
+        <th>ID Equipo</th>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Categoría</th>
+        <th>Nombre Equipo</th>
+        <th>Posición</th>
+        <th>Número de Camiseta</th>
+        <th>Teléfono</th>
+        <th>Correo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
     <tbody>
       <tr *ngFor="let jugador of jugadores">
         <td>{{ jugador.id }}</td>
@@ -496,7 +497,7 @@
         editP(partidoSeleccionado);
         editFormP = false;
         editForm = true;
-        getpartidosEquipo(equipoSeleccionado.id)
+        getPartidosEquipo(equipoSeleccionado.id)
       "
     >
       Guardar

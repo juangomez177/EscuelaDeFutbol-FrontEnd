@@ -1,4 +1,8 @@
-//Importaciones necesarias para aplicar el servicio
+/* NO FUNCIONAL
+ * Importaciones necesarias para aplicar el servicio.
+ * Los servicios en angular se aplican a través de una solicitud HTTP
+ * donde apis de tipo Rest son las que reciben el llamado mediante la misma url
+ */
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -10,44 +14,40 @@ import { Galeria } from '../models/galeria';
 //Métodos para interactuar con el servicio, como conexión al servidor, consulta, eliminación, etc
 @Injectable({ providedIn: 'root' })
 export class GaleriaService {
-
-  private galeriasUrl = 'api/galerias';  // URL to web api
+  private galeriasUrl = 'api/galerias'; // URL to web api
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(
-    private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   /** GET Galerias from the server */
   getGalerias(): Observable<Galeria[]> {
-    return this.http.get<Galeria[]>(this.galeriasUrl)
-      .pipe(
-        tap(_ => this.log('fetched Galerias')),
-        catchError(this.handleError<Galeria[]>('getGalerias', []))
-      );
+    return this.http.get<Galeria[]>(this.galeriasUrl).pipe(
+      tap((_) => this.log('fetched Galerias')),
+      catchError(this.handleError<Galeria[]>('getGalerias', []))
+    );
   }
 
   /** GET Galeria by id. Return `undefined` when id not found */
   getGaleriaNo404<Data>(id: number): Observable<Galeria> {
     const url = `${this.galeriasUrl}/?id=${id}`;
-    return this.http.get<Galeria[]>(url)
-      .pipe(
-        map(Galerias => Galerias[0]), // returns a {0|1} element array
-        tap(h => {
-          const outcome = h ? 'fetched' : 'did not find';
-          this.log(`${outcome} Galeria id=${id}`);
-        }),
-        catchError(this.handleError<Galeria>(`getGaleria id=${id}`))
-      );
+    return this.http.get<Galeria[]>(url).pipe(
+      map((Galerias) => Galerias[0]), // returns a {0|1} element array
+      tap((h) => {
+        const outcome = h ? 'fetched' : 'did not find';
+        this.log(`${outcome} Galeria id=${id}`);
+      }),
+      catchError(this.handleError<Galeria>(`getGaleria id=${id}`))
+    );
   }
 
   /** GET Galeria by id. Will 404 if id not found */
   getGaleria(id: number): Observable<Galeria> {
     const url = `${this.galeriasUrl}/${id}`;
     return this.http.get<Galeria>(url).pipe(
-      tap(_ => this.log(`fetched Galeria id=${id}`)),
+      tap((_) => this.log(`fetched Galeria id=${id}`)),
       catchError(this.handleError<Galeria>(`getGaleria id=${id}`))
     );
   }
@@ -59,9 +59,11 @@ export class GaleriaService {
       return of([]);
     }
     return this.http.get<Galeria[]>(`${this.galeriasUrl}/?name=${term}`).pipe(
-      tap(x => x.length ?
-         this.log(`found Galerias matching "${term}"`) :
-         this.log(`no Galerias matching "${term}"`)),
+      tap((x) =>
+        x.length
+          ? this.log(`found Galerias matching "${term}"`)
+          : this.log(`no Galerias matching "${term}"`)
+      ),
       catchError(this.handleError<Galeria[]>('searchGalerias', []))
     );
   }
@@ -70,10 +72,14 @@ export class GaleriaService {
 
   /** POST: add a new Galeria to the server */
   addGaleria(Galeria: Galeria): Observable<Galeria> {
-    return this.http.post<Galeria>(this.galeriasUrl, Galeria, this.httpOptions).pipe(
-      tap((newEquipo: Galeria) => this.log(`added Galeria w/ id=${newEquipo.id}`)),
-      catchError(this.handleError<Galeria>('addGaleria'))
-    );
+    return this.http
+      .post<Galeria>(this.galeriasUrl, Galeria, this.httpOptions)
+      .pipe(
+        tap((newEquipo: Galeria) =>
+          this.log(`added Galeria w/ id=${newEquipo.id}`)
+        ),
+        catchError(this.handleError<Galeria>('addGaleria'))
+      );
   }
 
   /** DELETE: delete the Galeria from the server */
@@ -81,7 +87,7 @@ export class GaleriaService {
     const url = `${this.galeriasUrl}/${id}`;
 
     return this.http.delete<Galeria>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted Galeria id=${id}`)),
+      tap((_) => this.log(`deleted Galeria id=${id}`)),
       catchError(this.handleError<Galeria>('deleteGaleria'))
     );
   }
@@ -89,7 +95,7 @@ export class GaleriaService {
   /** PUT: update the Galeria on the server */
   updateGaleria(Galeria: Galeria): Observable<any> {
     return this.http.put(this.galeriasUrl, Galeria, this.httpOptions).pipe(
-      tap(_ => this.log(`updated Galeria id=${Galeria.id}`)),
+      tap((_) => this.log(`updated Galeria id=${Galeria.id}`)),
       catchError(this.handleError<any>('updateGaleria'))
     );
   }
@@ -103,7 +109,6 @@ export class GaleriaService {
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
@@ -115,11 +120,8 @@ export class GaleriaService {
     };
   }
 
-    /** Log a EquipoService message with the MessageService */
-    private log(message: string) {
-      console.log(message);
-    }
-
-
-  
+  /** Log a EquipoService message with the MessageService */
+  private log(message: string) {
+    console.log(message);
+  }
 }

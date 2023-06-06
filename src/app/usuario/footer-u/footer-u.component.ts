@@ -4,12 +4,12 @@ import { faPhone, faEnvelope, faMapMarkerAlt } from '@fortawesome/free-solid-svg
 @Component({
   selector: 'app-footer-u',
   templateUrl: './footer-u.component.html',
-  styleUrls: ['./footer-u.component.css']
+  styleUrls: ['./footer-u.component.css'],
 })
 export class FooterUComponent {
   phoneIcon = faPhone;
   envelopeIcon = faEnvelope;
   mapMarkerIcon = faMapMarkerAlt;
+
+  constructor() {}
 }
-
-

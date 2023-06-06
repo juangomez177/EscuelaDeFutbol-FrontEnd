@@ -5,6 +5,4 @@ export interface Equipo {
   capitan: string;
   entrenador: string;
   //logo: string;
-  
 }
-		

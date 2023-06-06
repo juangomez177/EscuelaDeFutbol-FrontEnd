@@ -1,10 +1,6 @@
-/* Estilos generales */
-
 h2 {
   color: rgb(255, 253, 253);
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9);
-
-
 }
 
 button {
@@ -16,33 +12,28 @@ button {
   font-size: 14px;
   padding: 8px 16px;
   transition: background-color 0.3s ease;
-
 }
 
 div button {
   margin-right: 10px;
   margin-bottom: 20px;
-
 }
 
 button:hover {
   background-color: rgb(17, 177, 251);
 }
 
-/* Estilos para el listado de equipos */
 table {
   background-color: rgba(255, 255, 255, 0.5);
   border-collapse: collapse;
   margin: 16px auto;
   width: 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.9);
-
 }
 
 thead {
   background-color: #333;
   color: #fff;
-
 }
 
 th,
@@ -70,7 +61,6 @@ label {
   text-align: left;
   font-weight: bold;
   color: rgb(0, 0, 0);
-  /* Cambia el color según tus preferencias */
   text-shadow: 1px 1px 1px rgba(252, 249, 249, 0.9);
 }
 
@@ -105,7 +95,6 @@ select {
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-bottom: 10px;
-
 }
 
 .formMain {
@@ -113,7 +102,6 @@ select {
   display: flex;
   flex-direction: column;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
-  
 }
 
 .form-field {
@@ -129,7 +117,6 @@ select {
   margin-right: 50px;
   margin-left: 50px;
   text-align: right;
-  
 }
 
 .form-field input,

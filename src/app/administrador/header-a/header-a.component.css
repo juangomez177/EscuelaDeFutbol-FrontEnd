@@ -1,6 +1,5 @@
 .header {
   position: relative;
-  /* Agregado 'position: relative' al contenedor principal */
   top: 0;
   left: 0;
   width: 100%;
@@ -27,11 +26,8 @@ h1 {
 .header_social-icons {
   margin-top: 20px;
   position: absolute;
-  /* Cambiado de 'display: flex' a 'position: absolute' */
   top: 0;
-  /* Agregado 'top: 0' para alinearlo en la parte superior */
   right: 50px;
-  /* Ajusta el valor para la separación del borde derecho */
 }
 
 .header_social-icons a {
@@ -41,7 +37,6 @@ h1 {
 
 .header_social-icons fa-icon {
   font-size: 30px;
-  /* Cambia el valor según el tamaño deseado */
   color: rgb(0, 0, 0);
 }
 

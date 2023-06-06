@@ -1,23 +1,31 @@
-<!--
+<div class="container">
+  <h2>Aso Fútbol</h2>
+  <img src="/assets/images/logo.jpg" alt="Logo de mi aplicación" />
 
- login.component.html -->
- <div class="container">
-  <h2>Aso Futbol</h2>
-  <img src="/assets/images/logo.jpg" alt="Logo de mi aplicación">
-  
   <h2>Iniciar sesión</h2>
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="email">Correo electrónico:</label>
-      <input type="email" class="form-control" id="email" name="email" required [(ngModel)]="email">
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        name="email"
+        required
+        [(ngModel)]="email"
+      />
     </div>
     <div class="form-group">
       <label for="password">Contraseña:</label>
-      <input type="password" class="form-control" id="password" name="password" required [(ngModel)]="password">
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        required
+        [(ngModel)]="password"
+      />
     </div>
     <button type="submit" class="btn btn-primary">Iniciar sesión</button>
   </form>
 </div>
-
-  
-  

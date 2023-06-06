@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { GaleriaAComponent } from './galeria-a.component';
 
 describe('GaleriaAComponent', () => {

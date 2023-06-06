@@ -9,6 +9,5 @@ export interface Jugador {
   n_camiseta: number;
   telefono: number;
   correo: string;
-
 }
 		
